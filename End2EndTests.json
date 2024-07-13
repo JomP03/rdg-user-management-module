@@ -1,0 +1,2626 @@
+{
+	"info": {
+		"_postman_id": "971cc346-e057-4061-bc7a-5b297353118c",
+		"name": "User Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30528180"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"item": [
+						{
+							"name": "Success",
+							"item": [
+								{
+									"name": "Default",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 201\", function () {\r",
+													"    pm.response.to.have.status(201);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"roleId\": \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Invalid Email",
+							"item": [
+								{
+									"name": "Invalid Domain",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@invalid.com\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "Invalid Format",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Invalid Name",
+							"item": [
+								{
+									"name": "Too long",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"PostmanAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA User\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "Too short",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"A\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "Contains Numbers",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"A123\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "Contains Symbols",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"A.-)(\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Invalid Phone Number",
+							"item": [
+								{
+									"name": "Too Short",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "Too long",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}1234\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "Contains Letters",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"91556789a\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "Not follow Portuguese Rules",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"945567891\",\r\n  \"roleId\": \"98aafe72-1c64-4543-9e16-5e3ab179ca11\",\r\n  \"password\": \"mYSuperSafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Invalid Password",
+							"item": [
+								{
+									"name": "Too short",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915567891\",\r\n  \"roleId\": \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r\n  \"password\": \"Safe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "No symbols",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915567891\",\r\n  \"roleId\": \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r\n  \"password\": \"mYSuperSafe1234\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "No numbers",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915567891\",\r\n  \"roleId\": \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r\n  \"password\": \"mYSuperSafe!!!!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "No UpperCase Letters",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915567891\",\r\n  \"roleId\": \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r\n  \"password\": \"mysupersafe123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								},
+								{
+									"name": "No LowerCase Letters",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+													"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Postman User\",\r\n  \"phoneNumber\": \"915567891\",\r\n  \"roleId\": \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r\n  \"password\": \"MYSUPERSAFE123!\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Edit User",
+					"item": [
+						{
+							"name": "Sucess",
+							"item": [
+								{
+									"name": "Success Edit PreScript-Created User",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// Set collection variables\r",
+													"pm.collectionVariables.set(\"randomNum\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum2\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum3\", _.random(0, 9));\r",
+													"\r",
+													"// Define the request body for the POST request\r",
+													"const requestBody = {\r",
+													"  email: `postman${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}@isep.ipp.pt`,\r",
+													"  name: \"Postman User\",\r",
+													"  phoneNumber: `915${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum2')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}`,\r",
+													"  roleId: \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r",
+													"  password: \"mYSuperSafe123!\"\r",
+													"};\r",
+													"\r",
+													"// Log the request body in a pretty format\r",
+													"console.log('Request Body:', JSON.stringify(requestBody, null, 2));\r",
+													"\r",
+													"\r",
+													"// Make a POST request with Authorization header\r",
+													"pm.sendRequest({\r",
+													"  url: 'http://localhost:5005/api/Users',\r",
+													"  method: 'POST',\r",
+													"  header: {\r",
+													"    'Content-Type': 'application/json',\r",
+													"    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThhMTQ1Mzk4YWE3NTUwNDU3ZWQxYjEiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc3ODkzNywiZXhwIjoxNzA2MzcwOTM3LCJhenAiOiJxc0FLcjNIdmVueTFYTXV0c1N0ejV6ckViUWdNWDBxcSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJtYW5hZ2U6YWRtaW4iLCJtYW5hZ2U6dXNlcnMiXX0.T283v5ZlYWIel02O5WqkSj2Rhb_CeK6kYIzi84XZ5VBB9uu9lzNetsoCtA77BUdodvs9Ua36e3ZhWCuqkoTi_1hrVV-dWVLiTg2LyL43RpnaTCUJ32IJoD_R034qYtDg8Cf7DPKhqm8ZFZ9kyrbBtF-6cbm8K3JVOXEp3sswrGFiWy3L3U0BTxNJoHAN9KM4HgjOxtSGtla8VHa1mZTcK4GRdkzjyjetBBRA9QyYjnk6njG0esz1pgim_AGCJSac9iaUvabD2gcdR8VF0OiTsUFa6MZj4UDNBCGwdcFZIMxgAWQYa3Im9dEGNkMWWafNYcUKcDX9CCnHy8Q9GTJihA' // Use the existing Authorization header\r",
+													"  },\r",
+													"    body: {\r",
+													"    mode: 'raw',\r",
+													"    raw: JSON.stringify(requestBody),\r",
+													"  },\r",
+													"}, (error, response) => {\r",
+													"  // Log response\r",
+													"  console.log(response);\r",
+													"\r",
+													"  // Check for errors\r",
+													"  if (error) {\r",
+													"    console.error(error);\r",
+													"    return;\r",
+													"  }\r",
+													"\r",
+													"  // Parse the response JSON\r",
+													"  const responseBody = response.json();\r",
+													"\r",
+													"  // Extract the ID from the response and store it in a variable\r",
+													"  const id = responseBody.id;\r",
+													"  pm.collectionVariables.set('patchId', id);\r",
+													"\r",
+													"  const iam = responseBody.iamId;\r",
+													"  pm.collectionVariables.set('signUpId', iam);\r",
+													"\r",
+													"  // Log the ID for reference\r",
+													"  console.log(`Patch Id: ${id}`);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThkYTRkODk4YWE3NTUwNDU4MDIzOWIiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc4MTYxNywiZXhwIjoxNzA2MzczNjE3LCJhenAiOiJxc0FLcjNIdmVueTFYTXV0c1N0ejV6ckViUWdNWDBxcSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJ1c2VyOnJlcXVlc3RzIl19.HVpkZlcq1khKrI7vtsx_7nYbNUIVYFCa_7AasnRja6W78PWEqhM8qYR5S3ySTCsGpdvl3QuMAvk-ihZMti-t-2E89j22m6_yYRKtp5GupUyfwfsck34GM6du7sKyg1GIdiEKzHnHrC62T5GjgNyQ0-yLN_wLGdINbARDWn1RFPWDOJVscPHu4S_OLy21vRFwVa0JvX0bk2noC4waATSP7sXTiyesYUPEIBEbddqghb9L0yAGdkNkc1VzisqgCLGLRd3nTUHqxm7WK9ExID4tmskdn0cmmI2OOH29p_msF8Ur1J4ZvolYvknCAWH-usl2Ks6mt5ItjtZUTFDcYNmYPw"
+											}
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Postman Updated User\",\r\n  \"phoneNumber\": \"\",\r\n  \"nif\": \"\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users/{{patchId}}"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Invalid Name",
+							"item": [
+								{
+									"name": "InvalidName Edit PreScript-Created User",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// Set collection variables\r",
+													"pm.collectionVariables.set(\"randomNum\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum2\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum3\", _.random(0, 9));\r",
+													"\r",
+													"// Define the request body for the POST request\r",
+													"const requestBody = {\r",
+													"  email: `postman${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}@isep.ipp.pt`,\r",
+													"  name: \"Postman User\",\r",
+													"  phoneNumber: `915${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum2')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}`,\r",
+													"  roleId: \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r",
+													"  password: \"mYSuperSafe123!\"\r",
+													"};\r",
+													"\r",
+													"// Log the request body in a pretty format\r",
+													"console.log('Request Body:', JSON.stringify(requestBody, null, 2));\r",
+													"\r",
+													"\r",
+													"// Make a POST request with Authorization header\r",
+													"pm.sendRequest({\r",
+													"  url: 'http://localhost:5005/api/Users',\r",
+													"  method: 'POST',\r",
+													"  header: {\r",
+													"    'Content-Type': 'application/json',\r",
+													"    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThhMTQ1Mzk4YWE3NTUwNDU3ZWQxYjEiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc3ODkzNywiZXhwIjoxNzA2MzcwOTM3LCJhenAiOiJxc0FLcjNIdmVueTFYTXV0c1N0ejV6ckViUWdNWDBxcSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJtYW5hZ2U6YWRtaW4iLCJtYW5hZ2U6dXNlcnMiXX0.T283v5ZlYWIel02O5WqkSj2Rhb_CeK6kYIzi84XZ5VBB9uu9lzNetsoCtA77BUdodvs9Ua36e3ZhWCuqkoTi_1hrVV-dWVLiTg2LyL43RpnaTCUJ32IJoD_R034qYtDg8Cf7DPKhqm8ZFZ9kyrbBtF-6cbm8K3JVOXEp3sswrGFiWy3L3U0BTxNJoHAN9KM4HgjOxtSGtla8VHa1mZTcK4GRdkzjyjetBBRA9QyYjnk6njG0esz1pgim_AGCJSac9iaUvabD2gcdR8VF0OiTsUFa6MZj4UDNBCGwdcFZIMxgAWQYa3Im9dEGNkMWWafNYcUKcDX9CCnHy8Q9GTJihA' // Use the existing Authorization header\r",
+													"  },\r",
+													"    body: {\r",
+													"    mode: 'raw',\r",
+													"    raw: JSON.stringify(requestBody),\r",
+													"  },\r",
+													"}, (error, response) => {\r",
+													"  // Log response\r",
+													"  console.log(response);\r",
+													"\r",
+													"  // Check for errors\r",
+													"  if (error) {\r",
+													"    console.error(error);\r",
+													"    return;\r",
+													"  }\r",
+													"\r",
+													"  // Parse the response JSON\r",
+													"  const responseBody = response.json();\r",
+													"\r",
+													"  // Extract the ID from the response and store it in a variable\r",
+													"  const id = responseBody.id;\r",
+													"  pm.collectionVariables.set('patchId', id);\r",
+													"\r",
+													"\r",
+													"  // Log the ID for reference\r",
+													"  console.log(`Patch Id: ${id}`);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThkYTRkODk4YWE3NTUwNDU4MDIzOWIiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc4MTYxNywiZXhwIjoxNzA2MzczNjE3LCJhenAiOiJxc0FLcjNIdmVueTFYTXV0c1N0ejV6ckViUWdNWDBxcSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJ1c2VyOnJlcXVlc3RzIl19.HVpkZlcq1khKrI7vtsx_7nYbNUIVYFCa_7AasnRja6W78PWEqhM8qYR5S3ySTCsGpdvl3QuMAvk-ihZMti-t-2E89j22m6_yYRKtp5GupUyfwfsck34GM6du7sKyg1GIdiEKzHnHrC62T5GjgNyQ0-yLN_wLGdINbARDWn1RFPWDOJVscPHu4S_OLy21vRFwVa0JvX0bk2noC4waATSP7sXTiyesYUPEIBEbddqghb9L0yAGdkNkc1VzisqgCLGLRd3nTUHqxm7WK9ExID4tmskdn0cmmI2OOH29p_msF8Ur1J4ZvolYvknCAWH-usl2Ks6mt5ItjtZUTFDcYNmYPw"
+											}
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"!!!!!!!!!!!!!!!!!!!\",\r\n  \"phoneNumber\": \"\",\r\n  \"nif\": \"\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users/{{patchId}}"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Invalid Phone Number",
+							"item": [
+								{
+									"name": "InvalidPhoneNumber Edit PreScript-Created User",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// Set collection variables\r",
+													"pm.collectionVariables.set(\"randomNum\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum2\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum3\", _.random(0, 9));\r",
+													"\r",
+													"// Define the request body for the POST request\r",
+													"const requestBody = {\r",
+													"  email: `postman${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}@isep.ipp.pt`,\r",
+													"  name: \"Postman User\",\r",
+													"  phoneNumber: `915${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum2')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}`,\r",
+													"  roleId: \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r",
+													"  password: \"mYSuperSafe123!\"\r",
+													"};\r",
+													"\r",
+													"// Log the request body in a pretty format\r",
+													"console.log('Request Body:', JSON.stringify(requestBody, null, 2));\r",
+													"\r",
+													"\r",
+													"// Make a POST request with Authorization header\r",
+													"pm.sendRequest({\r",
+													"  url: 'http://localhost:5005/api/Users',\r",
+													"  method: 'POST',\r",
+													"  header: {\r",
+													"    'Content-Type': 'application/json',\r",
+													"    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThhMTQ1Mzk4YWE3NTUwNDU3ZWQxYjEiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc3ODkzNywiZXhwIjoxNzA2MzcwOTM3LCJhenAiOiJxc0FLcjNIdmVueTFYTXV0c1N0ejV6ckViUWdNWDBxcSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJtYW5hZ2U6YWRtaW4iLCJtYW5hZ2U6dXNlcnMiXX0.T283v5ZlYWIel02O5WqkSj2Rhb_CeK6kYIzi84XZ5VBB9uu9lzNetsoCtA77BUdodvs9Ua36e3ZhWCuqkoTi_1hrVV-dWVLiTg2LyL43RpnaTCUJ32IJoD_R034qYtDg8Cf7DPKhqm8ZFZ9kyrbBtF-6cbm8K3JVOXEp3sswrGFiWy3L3U0BTxNJoHAN9KM4HgjOxtSGtla8VHa1mZTcK4GRdkzjyjetBBRA9QyYjnk6njG0esz1pgim_AGCJSac9iaUvabD2gcdR8VF0OiTsUFa6MZj4UDNBCGwdcFZIMxgAWQYa3Im9dEGNkMWWafNYcUKcDX9CCnHy8Q9GTJihA' // Use the existing Authorization header\r",
+													"  },\r",
+													"    body: {\r",
+													"    mode: 'raw',\r",
+													"    raw: JSON.stringify(requestBody),\r",
+													"  },\r",
+													"}, (error, response) => {\r",
+													"  // Log response\r",
+													"  console.log(response);\r",
+													"\r",
+													"  // Check for errors\r",
+													"  if (error) {\r",
+													"    console.error(error);\r",
+													"    return;\r",
+													"  }\r",
+													"\r",
+													"  // Parse the response JSON\r",
+													"  const responseBody = response.json();\r",
+													"\r",
+													"  // Extract the ID from the response and store it in a variable\r",
+													"  const id = responseBody.id;\r",
+													"  pm.collectionVariables.set('patchId', id);\r",
+													"\r",
+													"\r",
+													"  // Log the ID for reference\r",
+													"  console.log(`Patch Id: ${id}`);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThkYTRkODk4YWE3NTUwNDU4MDIzOWIiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc4MTYxNywiZXhwIjoxNzA2MzczNjE3LCJhenAiOiJxc0FLcjNIdmVueTFYTXV0c1N0ejV6ckViUWdNWDBxcSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJ1c2VyOnJlcXVlc3RzIl19.HVpkZlcq1khKrI7vtsx_7nYbNUIVYFCa_7AasnRja6W78PWEqhM8qYR5S3ySTCsGpdvl3QuMAvk-ihZMti-t-2E89j22m6_yYRKtp5GupUyfwfsck34GM6du7sKyg1GIdiEKzHnHrC62T5GjgNyQ0-yLN_wLGdINbARDWn1RFPWDOJVscPHu4S_OLy21vRFwVa0JvX0bk2noC4waATSP7sXTiyesYUPEIBEbddqghb9L0yAGdkNkc1VzisqgCLGLRd3nTUHqxm7WK9ExID4tmskdn0cmmI2OOH29p_msF8Ur1J4ZvolYvknCAWH-usl2Ks6mt5ItjtZUTFDcYNmYPw"
+											}
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"\",\r\n  \"phoneNumber\": \"!!!!!!!!!!!!!!!!!\",\r\n  \"nif\": \"\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users/{{patchId}}"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Only EndUsers can have Nif",
+							"item": [
+								{
+									"name": "OnlyEndUsers can have Nif Edit PreScript-Created User",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// Set collection variables\r",
+													"pm.collectionVariables.set(\"randomNum\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum2\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum3\", _.random(0, 9));\r",
+													"\r",
+													"// Define the request body for the POST request\r",
+													"const requestBody = {\r",
+													"  email: `postman${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}@isep.ipp.pt`,\r",
+													"  name: \"Postman User\",\r",
+													"  phoneNumber: `915${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum2')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}`,\r",
+													"  roleId: \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r",
+													"  password: \"mYSuperSafe123!\"\r",
+													"};\r",
+													"\r",
+													"// Log the request body in a pretty format\r",
+													"console.log('Request Body:', JSON.stringify(requestBody, null, 2));\r",
+													"\r",
+													"\r",
+													"// Make a POST request with Authorization header\r",
+													"pm.sendRequest({\r",
+													"  url: 'http://localhost:5005/api/Users',\r",
+													"  method: 'POST',\r",
+													"  header: {\r",
+													"    'Content-Type': 'application/json',\r",
+													"    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThhMTQ1Mzk4YWE3NTUwNDU3ZWQxYjEiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc3ODkzNywiZXhwIjoxNzA2MzcwOTM3LCJhenAiOiJxc0FLcjNIdmVueTFYTXV0c1N0ejV6ckViUWdNWDBxcSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJtYW5hZ2U6YWRtaW4iLCJtYW5hZ2U6dXNlcnMiXX0.T283v5ZlYWIel02O5WqkSj2Rhb_CeK6kYIzi84XZ5VBB9uu9lzNetsoCtA77BUdodvs9Ua36e3ZhWCuqkoTi_1hrVV-dWVLiTg2LyL43RpnaTCUJ32IJoD_R034qYtDg8Cf7DPKhqm8ZFZ9kyrbBtF-6cbm8K3JVOXEp3sswrGFiWy3L3U0BTxNJoHAN9KM4HgjOxtSGtla8VHa1mZTcK4GRdkzjyjetBBRA9QyYjnk6njG0esz1pgim_AGCJSac9iaUvabD2gcdR8VF0OiTsUFa6MZj4UDNBCGwdcFZIMxgAWQYa3Im9dEGNkMWWafNYcUKcDX9CCnHy8Q9GTJihA' // Use the existing Authorization header\r",
+													"  },\r",
+													"    body: {\r",
+													"    mode: 'raw',\r",
+													"    raw: JSON.stringify(requestBody),\r",
+													"  },\r",
+													"}, (error, response) => {\r",
+													"  // Log response\r",
+													"  console.log(response);\r",
+													"\r",
+													"  // Check for errors\r",
+													"  if (error) {\r",
+													"    console.error(error);\r",
+													"    return;\r",
+													"  }\r",
+													"\r",
+													"  // Parse the response JSON\r",
+													"  const responseBody = response.json();\r",
+													"\r",
+													"  // Extract the ID from the response and store it in a variable\r",
+													"  const id = responseBody.id;\r",
+													"  pm.collectionVariables.set('patchId', id);\r",
+													"\r",
+													"\r",
+													"  // Log the ID for reference\r",
+													"  console.log(`Patch Id: ${id}`);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThkYTRkODk4YWE3NTUwNDU4MDIzOWIiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc4MTYxNywiZXhwIjoxNzA2MzczNjE3LCJhenAiOiJxc0FLcjNIdmVueTFYTXV0c1N0ejV6ckViUWdNWDBxcSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJ1c2VyOnJlcXVlc3RzIl19.HVpkZlcq1khKrI7vtsx_7nYbNUIVYFCa_7AasnRja6W78PWEqhM8qYR5S3ySTCsGpdvl3QuMAvk-ihZMti-t-2E89j22m6_yYRKtp5GupUyfwfsck34GM6du7sKyg1GIdiEKzHnHrC62T5GjgNyQ0-yLN_wLGdINbARDWn1RFPWDOJVscPHu4S_OLy21vRFwVa0JvX0bk2noC4waATSP7sXTiyesYUPEIBEbddqghb9L0yAGdkNkc1VzisqgCLGLRd3nTUHqxm7WK9ExID4tmskdn0cmmI2OOH29p_msF8Ur1J4ZvolYvknCAWH-usl2Ks6mt5ItjtZUTFDcYNmYPw"
+											}
+										},
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"\",\r\n  \"phoneNumber\": \"\",\r\n  \"nif\": \"212297562\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users/{{patchId}}"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "List Users",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/Users"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SignUpRequests",
+			"item": [
+				{
+					"name": "Sucess",
+					"item": [
+						{
+							"name": "Default",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Pedro\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Invalid Phone Number",
+					"item": [
+						{
+							"name": "Too Short",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Pedro\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						},
+						{
+							"name": "Too Long",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Pedro\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						},
+						{
+							"name": "Contains Symbols",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Pedro\",\r\n  \"phoneNumber\": \"91556789/\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						},
+						{
+							"name": "Contains Letters",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Pedro\",\r\n  \"phoneNumber\": \"91556789a\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						},
+						{
+							"name": "Not follow Portuguese Rules",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Pedro\",\r\n  \"phoneNumber\": \"945567891\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Invalid Email",
+					"item": [
+						{
+							"name": "Too long",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Pedro alskdjfalskjdflaskjdflaskjdflajsdflkajsdflkjasdfljasdlfjkasdlfkjasldkfjlkdfjslsakdjflakjsdflaksjdflkajsdfljkasdfsadfsadf\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						},
+						{
+							"name": "Too short",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"a\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						},
+						{
+							"name": "Contains Numbers",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Pedro 1\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						},
+						{
+							"name": "Contains Symbols",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@isep.ipp.pt\",\r\n  \"name\": \"Pedro @\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Invalid Email",
+					"item": [
+						{
+							"name": "Invalid domain",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}@gmmail.ipp.pt\",\r\n  \"name\": \"Pedro\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid format",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set (\"randomNum\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum2\", _.random (0,9));\r",
+											"pm.collectionVariables.set (\"randomNum3\", _.random (0,9));\r",
+											"\r",
+											"let iamId = \"auth0|\";\r",
+											"\r",
+											"// Lenght of IamId\r",
+											"const numDigits = 24;\r",
+											"\r",
+											"// Generate random numbers\r",
+											"for (let i = 0; i < numDigits; i++) {\r",
+											"    const randomNum = _.random(0, 9);\r",
+											"    iamId += randomNum;\r",
+											"}\r",
+											"\r",
+											"pm.collectionVariables.set(\"iamId\", iamId);\r",
+											"\r",
+											"\r",
+											"// Função para gerar um dígito de controlo válido\r",
+											"function calcularDigitoControlo(nifParcial) {\r",
+											"    const peso = [9, 8, 7, 6, 5, 4, 3, 2];\r",
+											"    let soma = 0;\r",
+											"\r",
+											"    for (let i = 0; i < nifParcial.length; i++) {\r",
+											"        soma += parseInt(nifParcial[i]) * peso[i];\r",
+											"    }\r",
+											"\r",
+											"    const resto = soma % 11;\r",
+											"    const digitoControlo = resto < 2 ? 0 : 11 - resto;\r",
+											"\r",
+											"    return digitoControlo;\r",
+											"}\r",
+											"\r",
+											"// Gere uma parte inicial do NIF (8 dígitos)\r",
+											"const nifParcial = _.random(10000000, 99999999).toString();\r",
+											"\r",
+											"// Calcule o dígito de controlo\r",
+											"const digitoControlo = calcularDigitoControlo(nifParcial);\r",
+											"\r",
+											"// Construa o NIF completo\r",
+											"const nifCompleto = nifParcial + digitoControlo;\r",
+											"\r",
+											"// Converta o valor do NIF para uma string\r",
+											"const nifCompletoString = nifCompleto.toString();\r",
+											"\r",
+											"// Defina a variável do ambiente com o NIF gerado\r",
+											"pm.collectionVariables.set(\"nif\", nifCompletoString);\r",
+											"\r",
+											"console.log(`NIF Português gerado: ${nifCompletoString}`);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iamId\": \"{{iamId}}\",\r\n  \"email\": \"postman{{$randomInt}}isep.ipp.pt\",\r\n  \"name\": \"Pedro\",\r\n  \"phoneNumber\": \"915{{randomNum}}{{randomNum3}}{{randomNum2}}{{randomNum3}}{{randomNum}}{{randomNum2}}\",\r\n  \"nif\": \"{{nif}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Approve / Reject SignUp",
+					"item": [
+						{
+							"name": "Reject",
+							"item": [
+								{
+									"name": "Success Reject SignUpRequest",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// Set collection variables\r",
+													"pm.collectionVariables.set(\"randomNum\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum2\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum3\", _.random(0, 9));\r",
+													"\r",
+													"\r",
+													"// Define the request body for the POST request\r",
+													"const userBody = {\r",
+													"  email: `postman${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}@isep.ipp.pt`,\r",
+													"  name: \"Postman User\",\r",
+													"  phoneNumber: `915${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum2')}${pm.collectionVariables.get('randomNum3')}${pm.collectionVariables.get('randomNum')}${pm.collectionVariables.get('randomNum2')}`,\r",
+													"  roleId: \"e92cbf07-922d-4aa2-8ccd-54056736e2e0\",\r",
+													"  password: \"mYSuperSafe123!\"\r",
+													"};\r",
+													"\r",
+													"// Log the request body in a pretty format\r",
+													"console.log('Request Body:', JSON.stringify(userBody, null, 2));\r",
+													"\r",
+													"// Make a POST request with Authorization header\r",
+													"pm.sendRequest({\r",
+													"  url: 'http://localhost:5005/api/Users',\r",
+													"  method: 'POST',\r",
+													"  header: {\r",
+													"    'Content-Type': 'application/json',\r",
+													"    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThhMTQ1Mzk4YWE3NTUwNDU3ZWQxYjEiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc3ODkzNywiZXhwIjoxNzA2MzcwOTM3LCJhenAiOiJxc0FLcjNIdmVueTFYTXV0c1N0ejV6ckViUWdNWDBxcSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJtYW5hZ2U6YWRtaW4iLCJtYW5hZ2U6dXNlcnMiXX0.T283v5ZlYWIel02O5WqkSj2Rhb_CeK6kYIzi84XZ5VBB9uu9lzNetsoCtA77BUdodvs9Ua36e3ZhWCuqkoTi_1hrVV-dWVLiTg2LyL43RpnaTCUJ32IJoD_R034qYtDg8Cf7DPKhqm8ZFZ9kyrbBtF-6cbm8K3JVOXEp3sswrGFiWy3L3U0BTxNJoHAN9KM4HgjOxtSGtla8VHa1mZTcK4GRdkzjyjetBBRA9QyYjnk6njG0esz1pgim_AGCJSac9iaUvabD2gcdR8VF0OiTsUFa6MZj4UDNBCGwdcFZIMxgAWQYa3Im9dEGNkMWWafNYcUKcDX9CCnHy8Q9GTJihA' // Use the existing Authorization header\r",
+													"  },\r",
+													"    body: {\r",
+													"    mode: 'raw',\r",
+													"    raw: JSON.stringify(userBody),\r",
+													"  },\r",
+													"}, (error, response) => {\r",
+													"  // Log response\r",
+													"  console.log(response);\r",
+													"\r",
+													"  // Check for errors\r",
+													"  if (error) {\r",
+													"    console.error(error);\r",
+													"    return;\r",
+													"  }\r",
+													"\r",
+													"  // Parse the response JSON\r",
+													"  const responseBody = response.json();\r",
+													"\r",
+													"  // Extract the ID from the response and store it in a variable\r",
+													"  const id = responseBody.id;\r",
+													"  pm.collectionVariables.set('patchId', id);\r",
+													"\r",
+													"  const iam = responseBody.iamId;\r",
+													"  pm.collectionVariables.set('signUpId', iam);\r",
+													"\r",
+													"  // Log the ID for reference\r",
+													"  console.log(`Patch Id: ${id}`);\r",
+													"});\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"// ---------------------------------------------------------------------------------\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"// Define the request body for the POST request\r",
+													"const requestBody = {\r",
+													"  iamId: `${pm.collectionVariables.get(\"signUpId\")}`,\r",
+													"  email: `postman${pm.collectionVariables.get(\"randomNum\")}${pm.collectionVariables.get(\"randomNum2\")}@isep.ipp.pt`,\r",
+													"  name: \"Post Man\",\r",
+													"  phoneNumber: `915${pm.collectionVariables.get(\"randomNum\")}${pm.collectionVariables.get(\"randomNum3\")}${pm.collectionVariables.get(\"randomNum2\")}${pm.collectionVariables.get(\"randomNum3\")}${pm.collectionVariables.get(\"randomNum\")}${pm.collectionVariables.get(\"randomNum2\")}`,\r",
+													"  nif: \"191643696\",\r",
+													"};\r",
+													"\r",
+													"// Log the request body in a pretty format\r",
+													"console.log(\"Request Body:\", JSON.stringify(requestBody, null, 2));\r",
+													"\r",
+													"// Make a POST request with Authorization header\r",
+													"pm.sendRequest(\r",
+													"  {\r",
+													"    url: \"http://localhost:5005/api/SignUpRequest\",\r",
+													"    method: \"POST\",\r",
+													"    header: {\r",
+													"      \"Content-Type\": \"application/json\",\r",
+													"      Authorization:\r",
+													"        \"Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThhMTQ1Mzk4YWE3NTUwNDU3ZWQ1YjEiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc3ODkzNywiZXhwIjoxNzA2MzcwOTM3LCJhenAiOiJxc0FLcjNIdmVueTFYTXU0SldJQXN0NnpSZWJhVUF3TG1tcDZmOHozVnRsWSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJtYW5hZ2U6YWRtaW4iLCJtYW5hZ2U6dXNlcnMiXX0.T283v5ZlYWIel02O5WqkSj2Rhb_CeK6kYIzi84XZ5VBB9uu9lzNetsoCtA77BUdodvs9Ua36e3ZhWCuqkoTi_1hrVV-dWVLiTg2LyL43RpnaTCUJ32IJoD_R034qYtDg8Cf7DPKhqm8ZFZ9kyrbBtF-6cbm8K3JVOXEp3sswrGFiWy3L3U0BTxNJoHAN9KM4HgjOxtSGtla8VHa1mZTcK4GRdkzjyjetBBRA9QyYjnk6njG0esz1pgim_AGCJSac9iaUvabD2gcdR8VF0OiTsUFa6MZj4UDNBCGwdcFZIMxgAWQYa3Im9dEGNkMWWafNYcUKcDX9CCnHy8Q9GTJihA\",\r",
+													"    },\r",
+													"    body: {\r",
+													"      mode: \"raw\",\r",
+													"      raw: JSON.stringify(requestBody),\r",
+													"    },\r",
+													"  },\r",
+													"  (error, response) => {\r",
+													"    // Log response\r",
+													"    console.log(response);\r",
+													"\r",
+													"    // Check for errors\r",
+													"    if (error) {\r",
+													"      console.error(error);\r",
+													"      return;\r",
+													"    }\r",
+													"\r",
+													"    // Parse the response JSON\r",
+													"    const responseBody = response.json();\r",
+													"\r",
+													"    // Extract the ID from the response and store it in a variable\r",
+													"    const id = responseBody.id;\r",
+													"    pm.collectionVariables.set(\"signUpPatchId\", id);\r",
+													"\r",
+													"    // Log the ID for reference\r",
+													"    console.log(`signUppatchId Id: ${id}`);\r",
+													"  }\r",
+													");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"action\": false,\r\n  \"comment\": \"infelizmente, nao conseguiste\",\r\n  \"iamId\": \"auth0|658a145398aa7550457ed1b1\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest/{{signUpPatchId}}"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Approve",
+							"item": [
+								{
+									"name": "Success Approve SignUpRequest",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"// Set collection variables\r",
+													"pm.collectionVariables.set(\"randomNum\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum2\", _.random(0, 9));\r",
+													"pm.collectionVariables.set(\"randomNum3\", _.random(0, 9));\r",
+													"\r",
+													"\r",
+													"\r",
+													"// Define the request body for the POST request\r",
+													"const requestBody = {\r",
+													"  iamId: `auth0|65938a5798aa755045820920`,\r",
+													"  email: `postman${pm.collectionVariables.get(\"randomNum\")}${pm.collectionVariables.get(\"randomNum2\")}${pm.collectionVariables.get(\"randomNum3\")}@isep.ipp.pt`,\r",
+													"  name: \"Post Man Approve\",\r",
+													"  phoneNumber: `915${pm.collectionVariables.get(\"randomNum\")}${pm.collectionVariables.get(\"randomNum3\")}${pm.collectionVariables.get(\"randomNum2\")}${pm.collectionVariables.get(\"randomNum3\")}${pm.collectionVariables.get(\"randomNum\")}${pm.collectionVariables.get(\"randomNum2\")}`,\r",
+													"  nif: \"154560120\",\r",
+													"};\r",
+													"\r",
+													"// Log the request body in a pretty format\r",
+													"console.log(\"Request Body:\", JSON.stringify(requestBody, null, 2));\r",
+													"\r",
+													"// Make a POST request with Authorization header\r",
+													"pm.sendRequest(\r",
+													"  {\r",
+													"    url: \"http://localhost:5005/api/SignUpRequest\",\r",
+													"    method: \"POST\",\r",
+													"    header: {\r",
+													"      \"Content-Type\": \"application/json\",\r",
+													"      Authorization:\r",
+													"        \"Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NThhMTQ1Mzk4YWE3NTUwNDU3ZWQ1YjEiLCJhdWQiOlsiaHR0cHM6Ly9hcGkuYXV0aC5yb2Jkcm9uZWdvLmNvbSIsImh0dHBzOi8vZGV2LTUxamxtYXg1bTFzZWJwcHEuZXUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMzc3ODkzNywiZXhwIjoxNzA2MzcwOTM3LCJhenAiOiJxc0FLcjNIdmVueTFYTXU0SldJQXN0NnpSZWJhVUF3TG1tcDZmOHozVnRsWSIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJwZXJtaXNzaW9ucyI6WyJtYW5hZ2U6YWRtaW4iLCJtYW5hZ2U6dXNlcnMiXX0.T283v5ZlYWIel02O5WqkSj2Rhb_CeK6kYIzi84XZ5VBB9uu9lzNetsoCtA77BUdodvs9Ua36e3ZhWCuqkoTi_1hrVV-dWVLiTg2LyL43RpnaTCUJ32IJoD_R034qYtDg8Cf7DPKhqm8ZFZ9kyrbBtF-6cbm8K3JVOXEp3sswrGFiWy3L3U0BTxNJoHAN9KM4HgjOxtSGtla8VHa1mZTcK4GRdkzjyjetBBRA9QyYjnk6njG0esz1pgim_AGCJSac9iaUvabD2gcdR8VF0OiTsUFa6MZj4UDNBCGwdcFZIMxgAWQYa3Im9dEGNkMWWafNYcUKcDX9CCnHy8Q9GTJihA\",\r",
+													"    },\r",
+													"    body: {\r",
+													"      mode: \"raw\",\r",
+													"      raw: JSON.stringify(requestBody),\r",
+													"    },\r",
+													"  },\r",
+													"  (error, response) => {\r",
+													"    // Log response\r",
+													"    console.log(response);\r",
+													"\r",
+													"    // Check for errors\r",
+													"    if (error) {\r",
+													"      console.error(error);\r",
+													"      return;\r",
+													"    }\r",
+													"\r",
+													"    // Parse the response JSON\r",
+													"    const responseBody = response.json();\r",
+													"\r",
+													"    // Extract the ID from the response and store it in a variable\r",
+													"    const id = responseBody.id;\r",
+													"    pm.collectionVariables.set(\"signUpPatchId\", id);\r",
+													"\r",
+													"    // Log the ID for reference\r",
+													"    console.log(`signUppatchId Id: ${id}`);\r",
+													"  }\r",
+													");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"action\": true,\r\n  \"comment\": \"boa, foste aceite\",\r\n  \"iamId\": \"auth0|658a145398aa7550457ed1b1\"\r\n}   ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{URL}}:{{PORT}}/{{PREFIX}}/SignUpRequest/{{signUpPatchId}}"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": {
+			"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFKOGJkVF81N2JuR1pTZEI0djRPSCJ9.eyJpc3MiOiJodHRwczovL2Rldi01MWpsbWF4NW0xc2VicHBxLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwMDczOTgyMTg1MzA3OTAwMjI3NSIsImF1ZCI6WyJodHRwczovL2FwaS5hdXRoLnJvYmRyb25lZ28uY29tIiwiaHR0cHM6Ly9kZXYtNTFqbG1heDVtMXNlYnBwcS5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNzA0MTU3Mzk5LCJleHAiOjE3MDY3NDkzOTksImF6cCI6InFzQUtyM0h2ZW55MVhNdXRzU3R6NXpyRWJRZ01YMHFxIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTp0YXNrcmVxdWlzaXRpb24iLCJtYW5hZ2U6YWRtaW4iLCJtYW5hZ2U6Y2FtcHVzIiwibWFuYWdlOmZsZWV0IiwibWFuYWdlOnRhc2tzIiwibWFuYWdlOnVzZXJzIiwidXNlcjpyZXF1ZXN0cyJdfQ.yPqLOhx_Uo46fKaIntAjWFWypGpMgELk1T9xUMWF8yN4C-QBOQ7Woaa8UQtGTKybNGYw6st19nEFuKT_wVBix1ysBDmL9taPIEkJZMUcK4cALl4DYDhnUuH5krJxUdNO6t2TEZSrN8Wa9YVxgZoiFHR_1NRSzweWNaImED2-XFLyV_bOvjeBJqOA31SzdS-zmDKG4Z36PcMx_jxU5RFGBOq2gmWo7G8NFqRiIJ-UUiv8oQGv0EPnRjTE1Rw5RUMkpT0PWyLdvfaGUD0qQ0mQNA9LVeEaXFW_pRQOWXdJSlnUwgO_q16AK91jHk2iGIs3bdkjySVIzP4cPIxfo0TRmA",
+			"key": "Authorization"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost",
+			"type": "string"
+		},
+		{
+			"key": "PORT",
+			"value": "5005",
+			"type": "string"
+		},
+		{
+			"key": "PREFIX",
+			"value": "api",
+			"type": "string"
+		},
+		{
+			"key": "randomNum",
+			"value": ""
+		},
+		{
+			"key": "randomNum2",
+			"value": ""
+		},
+		{
+			"key": "randomNum3",
+			"value": ""
+		},
+		{
+			"key": "iamId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "nif",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "patchId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "patchPhoneNumber",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "signUpPatchId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "signUpId",
+			"value": ""
+		}
+	]
+}
